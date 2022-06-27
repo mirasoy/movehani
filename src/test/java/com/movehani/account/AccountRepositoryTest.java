@@ -1,5 +1,7 @@
 package com.movehani.account;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,11 @@ public class AccountRepositoryTest {
 	@Test
 	public void saveTest() {
 		
-		
 		Account accout = new Account();
-		accout.setSn(1l);
 		accout.setNickname("임시닉네임");
+		Account resultAccout =accountRepository.save(accout);
 		
-		accountRepository.save(accout);
-		System.out.println("-------------------");
+		assertThat(resultAccout.getNickname().equals("임시닉네임"));
 		accountRepository.findAll().forEach(System.out::println);		
 	}
 	
