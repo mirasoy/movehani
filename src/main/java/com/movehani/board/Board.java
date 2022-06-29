@@ -15,11 +15,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.movehani.account.Account;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Data
+@Builder
 public class Board {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,5 +54,8 @@ public class Board {
 
 	//private GroupEntity group;   
 
+
+
+	
 	
 }
