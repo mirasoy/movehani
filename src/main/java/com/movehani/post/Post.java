@@ -1,9 +1,10 @@
-package com.movehani.board;
+package com.movehani.post;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,14 +23,14 @@ import lombok.Data;
 @EntityListeners(AuditingEntityListener.class)
 @Data
 @Builder
-public class Board {
+public class Post {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long boardSn;
+	private Long postSn;
 	
 	private String title;
 
-	private String boardStatus = "I";
+	private String postStatus = "I";
 	
 	private String contents;
 	
@@ -37,20 +38,20 @@ public class Board {
 	
 	private String bordercolor;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Account updateUser;
 	
 	@LastModifiedDate
 	private Date updateDate;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Account registUser;
 	
 	@CreatedDate
 	private Date reignedDate;
 
 	
-	//private BoardFileEntity boardFileEntity ;   
+	//private postFileEntity postFileEntity ;   
 
 	//private GroupEntity group;   
 
