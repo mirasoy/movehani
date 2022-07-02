@@ -1,23 +1,20 @@
 package com.movehani.post;
 
-import java.net.http.HttpRequest;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.movehani.account.AccountRepository;
-
-@RestController
+@Controller
 public class PostController {
 	
 	@Autowired
@@ -25,9 +22,13 @@ public class PostController {
 	
 	
 	@GetMapping("/post/{postSn}")
-	public ResponseEntity<Post> getPost(@PathVariable int postSn) {
-		Post savedpost = postService.getPost(postSn);
-		return new ResponseEntity(savedpost , HttpStatus.OK);
+	public ModelAndView getPost(@PathVariable int postSn) {
+		 ModelAndView mav = new ModelAndView();
+		Optional<Post> savedpost = postService.getPost(postSn);
+		mav.addObject("post",savedpost.get());
+		mav.setViewName("post");
+		return mav;
+		
 	}
 	
 	
@@ -36,7 +37,7 @@ public class PostController {
 	public ResponseEntity<Post> updateProduct(@RequestBody Post post) {
 			
 		Post savedpost = postService.save(post);
-		return new ResponseEntity(savedpost , HttpStatus.OK);
+		return new ResponseEntity<Post>(savedpost , HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/post")

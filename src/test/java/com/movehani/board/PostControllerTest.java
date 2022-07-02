@@ -1,6 +1,7 @@
 package com.movehani.board;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,25 +29,33 @@ public class PostControllerTest {
 
 	private static final String BASE_URL = "";
 
-	// @Test
+	//@Test
 	@DisplayName("저장 테스트")
 	void save_test() throws Exception {
 
 		Post newBoard = Post.builder().title("타이틀_").build();
 		String body = mapper.writeValueAsString(newBoard);
 		System.err.println(body);
-		mvc.perform(post(BASE_URL + "/board").content(body).contentType(MediaType.APPLICATION_JSON) // 보내는 데이터의 타입을 명시
+		mvc.perform(post(BASE_URL + "/post").content(body).contentType(MediaType.APPLICATION_JSON) // 보내는 데이터의 타입을 명시
 		).andDo(print()).andExpect(status().isOk());
 	}
 
-	@Test
+	//@Test
 	@DisplayName("삭제 테스트")
 	void delete_test() throws Exception {
 
-		Post deleteBoard = Post.builder().postSn(1l).build();
+		Post deleteBoard = Post.builder().postSn(19l).build();
 		String deleteBody = mapper.writeValueAsString(deleteBoard);
 		mvc.perform(delete(BASE_URL + "/post").content(deleteBody).contentType(MediaType.APPLICATION_JSON) // 보내는 데이터의
-																											// 타입을 명시
 		).andDo(print()).andExpect(status().isOk());
+		
+	}
+	
+	@Test
+	@DisplayName("불러오기 테스트")
+	void get_test() throws Exception {
+		
+		mvc.perform(get(BASE_URL + "/post/1")).andDo(print()).andExpect(status().isOk());
+		
 	}
 }

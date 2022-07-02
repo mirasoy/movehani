@@ -50,6 +50,25 @@ public class Post {
 	@CreatedDate
 	private Date reignedDate;
 
+	public Post() {
+		
+	}
+
+	public Post(Long postSn, String title, String postStatus, String contents, String textcolor, String bordercolor,
+			Account updateUser, Date updateDate, Account registUser, Date reignedDate) {
+		super();
+		this.postSn = postSn;
+		this.title = title;
+		this.postStatus = postStatus;
+		this.contents = contents;
+		this.textcolor = textcolor;
+		this.bordercolor = bordercolor;
+		this.updateUser = updateUser;
+		this.updateDate = updateDate;
+		this.registUser = registUser;
+		this.reignedDate = reignedDate;
+	}
+	
 	
 	//private postFileEntity postFileEntity ;   
 
