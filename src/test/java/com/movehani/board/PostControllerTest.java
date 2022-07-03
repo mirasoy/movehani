@@ -29,7 +29,7 @@ public class PostControllerTest {
 
 	private static final String BASE_URL = "";
 
-	//@Test
+	@Test
 	@DisplayName("저장 테스트")
 	void save_test() throws Exception {
 
@@ -51,7 +51,7 @@ public class PostControllerTest {
 		
 	}
 	
-	@Test
+	//@Test
 	@DisplayName("불러오기 테스트")
 	void get_test() throws Exception {
 		

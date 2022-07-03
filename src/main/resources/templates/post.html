@@ -1,20 +1,40 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> 
+   <head th:replace="fragments/header :: header" />
     <body>
-     <h2 th:object="${post}"></h2> check
+     <h2 th:object="${post}"></h2> 
      
         <div class="container">
+         <div th:replace="fragments/bodyHeader :: bodyHeader"/>
             <div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                      	 <td th:text="${post.title}">10000</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                
+                <!-- Product section-->
+		        <section class="py-5">
+		            <div class="container px-4 px-lg-5 my-5">
+		                <div class="row gx-4 gx-lg-5 align-items-center">
+		                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+		                    <div class="col-md-6">
+		                        <div class="small mb-1">그룹명</div>
+		                        <h1 class="display-5 fw-bolder" th:text="${post.title}">10000</td></h1>
+		                        <div class="fs-5 mb-5">
+		                            <span>날짜</span>
+		                        </div>
+		                        <p class="lead"  th:text="${post.contents}">내용물</p>
+		                        <div class="d-flex">
+		                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+		                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+		                                <i class="bi-cart-fill me-1"></i>
+		                                Add to cart
+		                            </button>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </section>
+                
+                
             </div>
+             <div th:replace="fragments/footer :: footer" />
         </div> <!-- /container -->
     </body>
 </html>
