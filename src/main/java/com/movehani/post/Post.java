@@ -2,6 +2,7 @@ package com.movehani.post;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -48,6 +49,7 @@ public class Post {
 	private Account registUser;
 	
 	@CreatedDate
+	@Column(updatable = false)
 	private Date reignedDate;
 
 	public Post() {

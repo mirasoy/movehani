@@ -25,13 +25,16 @@ public class PostController {
 	public ModelAndView getPost(@PathVariable int postSn) {
 		 ModelAndView mav = new ModelAndView();
 		Optional<Post> savedpost = postService.getPost(postSn);
-		mav.addObject("post",savedpost.get());
-		mav.setViewName("post");
-		return mav;
+		if(savedpost.isPresent()) {
+			mav.addObject("post",savedpost.get());
+		}else {
+			mav.addObject("post",new Post());
+		}
 		
+		
+		mav.setViewName("post/post");
+		return mav;
 	}
-	
-	
 	
 	@PostMapping("/post")
 	public ResponseEntity<Post> updateProduct(@RequestBody Post post) {
@@ -46,4 +49,13 @@ public class PostController {
 		postService.deletePost(post);
 		return "삭제완료";
 	}
+	
+	
+	@GetMapping("/post/registPage")
+	public ModelAndView registPage(@PathVariable int postSn) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("post/registPage");
+		return mav;
+	}
+	
 }
