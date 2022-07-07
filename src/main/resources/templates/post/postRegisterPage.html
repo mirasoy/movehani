@@ -11,20 +11,28 @@
                 <!-- Product section-->
 		        <section class="py-5">
 		        	<form name="postForm" action="/post" method="post">
+		        		<input type="file" name="attachFile" id="attachFile" style="display: none;">
 			            <div class="container px-4 px-lg-5 my-5">
 			                <div class="row gx-4 gx-lg-5 align-items-center">
 			                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
 			                    <div class="col-md-6">
 			                        <div class="small mb-1">그룹명</div>
+			                        <div class="d-grid mb-3 gap-2 d-md-flex justify-content-md-end">
+			                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="document.getElementById('attachFile').click()">
+			                                <i class="bi bi-camera"></i>
+			                                사진등록
+			                            </button>
+			                        </div>
 			                        <div class="input-group mb-3">
 									  <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
 									  <input type="text"  name="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 									</div>
+									
 									<span class="input-group-text" id="inputGroup-sizing-default">내용</span>
 									<div class="input-group mb-3">
 									  <input type="text" name="contents" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 									</div>
-			                        <div class="">
+			                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
 			                                <i class="bi bi-pencil-square"></i>
 			                                등록

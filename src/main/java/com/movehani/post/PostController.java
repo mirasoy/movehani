@@ -51,7 +51,7 @@ public class PostController {
 	}
 	
 	
-	@GetMapping("/post/registPage")
+	@GetMapping("/registPage")
 	public ModelAndView registPage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("post/postRegisterPage");
