@@ -1,4 +1,4 @@
-package com.movehani.post;
+package com.movehani.file;
 
 import java.util.Date;
 
@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @Builder
-public class File {
+public class AttachFile {
     @Id
     @GeneratedValue
     private Long id;
@@ -29,10 +29,10 @@ public class File {
 
     private String filePath;
     
-    public File() {
+    public AttachFile() {
     }
 
-	public File(Long id, String origFilename, String filename, String filePath) {
+	public AttachFile(Long id, String origFilename, String filename, String filePath) {
 		super();
 		this.id = id;
 		this.origFilename = origFilename;

@@ -10,8 +10,8 @@
                 
                 <!-- Product section-->
 		        <section class="py-5">
-		        	<form name="postForm" action="/post" method="post">
-		        		<input type="file" name="attachFile" id="attachFile" style="display: none;">
+		        	<form name="postForm"  enctype="multipart/form-data" action="/post" method="post">
+		        		<input type="file" name="file" id="attachFile" style="display: none;">
 			            <div class="container px-4 px-lg-5 my-5">
 			                <div class="row gx-4 gx-lg-5 align-items-center">
 			                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>

@@ -10,12 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.movehani.account.Account;
+import com.movehani.file.AttachFile;
 
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +41,9 @@ public class Post {
 	
 	private String bordercolor;
 	
+	@OneToOne
+	private AttachFile attachFile;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Account updateUser;
 	
@@ -57,7 +62,7 @@ public class Post {
 	}
 
 	public Post(Long postSn, String title, String postStatus, String contents, String textcolor, String bordercolor,
-			Account updateUser, Date updateDate, Account registUser, Date reignedDate) {
+			AttachFile attachFile, Account updateUser, Date updateDate, Account registUser, Date reignedDate) {
 		super();
 		this.postSn = postSn;
 		this.title = title;
@@ -65,11 +70,15 @@ public class Post {
 		this.contents = contents;
 		this.textcolor = textcolor;
 		this.bordercolor = bordercolor;
+		this.attachFile = attachFile;
 		this.updateUser = updateUser;
 		this.updateDate = updateDate;
 		this.registUser = registUser;
 		this.reignedDate = reignedDate;
 	}
+
+	
+	
 	
 	
 	//private postFileEntity postFileEntity ;   
