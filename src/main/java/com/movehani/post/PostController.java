@@ -45,7 +45,7 @@ public class PostController {
 	}
 	
 	@PostMapping("/post")
-	public ResponseEntity<Post> updateProduct(@RequestParam("file") MultipartFile files, Post post) {
+	public String updateProduct(@RequestParam("file") MultipartFile files, Post post) {
 			
 		if(files != null) {
 			
@@ -55,7 +55,7 @@ public class PostController {
 		
 		Post savedpost = postService.save(post);
 		
-		return new ResponseEntity<Post>(savedpost , HttpStatus.OK);
+		return  "redirect:/post/"+savedpost.getPostSn();
 	}
 	
 	@DeleteMapping("/post")
