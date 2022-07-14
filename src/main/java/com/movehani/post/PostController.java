@@ -1,6 +1,13 @@
 package com.movehani.post;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +49,30 @@ public class PostController {
 		
 		mav.setViewName("post/post");
 		return mav;
+	}
+	
+	@GetMapping("/postFile/{postSn}")
+	public void getPostFile(@PathVariable int postSn , HttpServletResponse response) throws IOException {
+		
+		Optional<Post> savedpost = postService.getPost(postSn);;
+		AttachFile file = savedpost.get().getAttachFile();
+		
+		try {
+			byte[] files = FileUtils.readFileToByteArray(new File(file.getFilePath()));
+			
+			response.setContentType("application/octet-stream");
+			response.setContentLength(files.length);
+			response.setHeader("Content-Disposition","attachment; filename=\""+URLEncoder.encode(file.getFilename(),"UTF-8")+"\"");
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			
+			response.getOutputStream().write(files);
+			response.getOutputStream().flush();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			response.getOutputStream().close();
+		}
 	}
 	
 	@PostMapping("/post")
