@@ -89,11 +89,11 @@ public class PostController {
 		return  "redirect:/post/"+savedpost.getPostSn();
 	}
 	
-	@DeleteMapping("/post")
-	public String deleteProduct(Post post) {
+	@DeleteMapping("/post/{postSn}")
+	public String deleteProduct(@PathVariable int postSn) {
 		
-		postService.deletePost(post);
-		return "삭제완료";
+		postService.deletePost(postSn);
+		return  "redirect:/registPage";
 	}
 	
 	

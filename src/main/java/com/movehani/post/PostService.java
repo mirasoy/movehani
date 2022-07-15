@@ -15,8 +15,9 @@ public class PostService {
 		return postRepository.save(post);
 	}
 
-	public void deletePost(Post post) {
-		postRepository.delete(post);
+	public void deletePost(int postSn) 
+	{
+		postRepository.deleteById((long) postSn);
 	}
 
 	public Optional<Post> getPost(int postSn) {
