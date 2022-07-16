@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"> 
+   <head th:replace="fragments/header :: header" />
+   <script>
+   window.addEventListener('DOMContentLoaded', function(){
+   document.getElementById("delete").onclick = deletePost;
+   });
+   function deletePost(){
+	document.postForm._method.value= "delete";
+	document.postForm.submit();
+	}
+   
+   </script>
+   
+    <body>
+     
+        <div class="container">
+         <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+			<div th:each="post, i: ${postList}">
+			<h2 th:text="${post.title}"></h2>
+			</div>
+             <div th:replace="fragments/footer :: footer" />
+        </div> <!-- /container -->
+    </body>
+</html>

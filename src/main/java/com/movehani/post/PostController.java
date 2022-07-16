@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -101,6 +103,17 @@ public class PostController {
 	public ModelAndView registPage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("post/postRegisterPage");
+		return mav;
+	}
+	
+	@GetMapping("/postlist")
+	public ModelAndView postList(Pageable  page) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("post/postlist");
+		
+		Page<Post> postList= postService.getPostList(page);
+		mav.addObject("postList", postList);
+		
 		return mav;
 	}
 	
