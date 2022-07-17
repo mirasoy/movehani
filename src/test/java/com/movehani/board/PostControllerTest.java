@@ -29,7 +29,7 @@ public class PostControllerTest {
 
 	private static final String BASE_URL = "";
 
-	@Test
+	//@Test
 	@DisplayName("저장 테스트")
 	void save_test() throws Exception {
 
@@ -56,6 +56,14 @@ public class PostControllerTest {
 	void get_test() throws Exception {
 		
 		mvc.perform(get(BASE_URL + "/post/1")).andDo(print()).andExpect(status().isOk());
+		
+	}
+	
+	@Test
+	@DisplayName("불러오기 테스트")
+	void getList_test() throws Exception {
+		
+		mvc.perform(get(BASE_URL + "/postlist")).andDo(print()).andExpect(status().isOk());
 		
 	}
 }

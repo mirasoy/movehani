@@ -3,7 +3,11 @@ package com.movehani.post;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +16,11 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.PagedModel.PageMetadata;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -107,12 +116,23 @@ public class PostController {
 	}
 	
 	@GetMapping("/postlist")
-	public ModelAndView postList(Pageable  page) {
+	public ModelAndView postList(@PageableDefault(size = 10) Pageable pageable, PagedResourcesAssembler<Post> assembler) {
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("post/postlist");
 		
-		Page<Post> postList= postService.getPostList(page);
-		mav.addObject("postList", postList);
+		PagedModel<EntityModel<Post>> postList= assembler.toModel(postService.getPostList(pageable));
+		PageMetadata metadata = postList.getMetadata();
+		mav.addObject("postList",postList.getContent());
+		mav.addObject("metadata",metadata);
+		
+		int totalPages = (int) metadata.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                .boxed()
+                .collect(Collectors.toList());
+            mav.addObject("pageNumbers", pageNumbers);
+        }
 		
 		return mav;
 	}
