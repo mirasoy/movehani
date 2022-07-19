@@ -104,7 +104,7 @@ public class PostController {
 	public String deleteProduct(@PathVariable int postSn) {
 		
 		postService.deletePost(postSn);
-		return  "redirect:/registPage";
+		return  "redirect:/postlist";
 	}
 	
 	

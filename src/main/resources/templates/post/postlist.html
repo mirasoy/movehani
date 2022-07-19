@@ -4,12 +4,7 @@
 <head th:replace="fragments/header :: header" />
 <script>
 	window.addEventListener('DOMContentLoaded', function () {
-		document.getElementById("delete").onclick = deletePost;
 	});
-	function deletePost() {
-		document.postForm._method.value = "delete";
-		document.postForm.submit();
-	}
 
 </script>
 
@@ -17,21 +12,35 @@
 
 	<div class="container">
 		<div th:replace="fragments/bodyHeader :: bodyHeader" />
-		<div th:each="post, i: ${postList}">
-			<h2 th:text="${post.Content.title}"></h2>
-		</div>
-		
-		<nav aria-label="Page navigation example" >
-  			<ul class="pagination" >
-  			<li class="page-item" th:if="${metadata.totalPages > 0}"  th:each="pageNumber : ${pageNumbers}">
-			<a th:href="@{/postlist(size=${metadata.size}, page=${pageNumber-1})}" th:text="${pageNumber}" class = "page-link"></a>
-  			</li>
-  			</ul>
+			<div class="row">
+				<div class="col-6"  th:each="post, i: ${postList}">
+					<a th:href="@{/post/{postSn}(postSn=${post.Content.postSn})}">
+						<div class="col-md-6" ><img id="preview-image" th:src="@{/postFile/{postSn}(postSn=${post.Content.postSn})}" style ="width: 20em;height: 20em;"></div>
+						<h2 th:text="${post.Content.title}"></h2>
+					</a>
+				</div>
+			</div>
+
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item" th:if="${metadata.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+					<a th:href="@{/postlist(size=${metadata.size}, page=${pageNumber-1})}" th:text="${pageNumber}"	class="page-link"></a>
+				</li>
+			</ul>
 		</nav>
-		
+
+		<a href="/registPage">
+	        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+	            <i class="bi bi-pencil-square"></i>
+	            글쓰기
+	        </button>
+        </a>
+
+
+
 		<div th:replace="fragments/footer :: footer" />
 	</div> <!-- /container -->
-	
+
 
 </body>
 
