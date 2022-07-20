@@ -1,4 +1,4 @@
-package com.movehani.post;
+package com.movehani.group;
 
 import java.util.Date;
 
@@ -18,7 +18,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.movehani.account.Account;
 import com.movehani.file.AttachFile;
-import com.movehani.group.AthleticGroup;
 
 import lombok.Builder;
 import lombok.Data;
@@ -27,19 +26,14 @@ import lombok.Data;
 @EntityListeners(AuditingEntityListener.class)
 @Data
 @Builder
-public class Post {
+public class AthleticGroup {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long postSn;
+	private Long groupSn;
 	
-	private String title;
+	private String groupName;
 
-	private String postStatus = "I";
-	
-	private String contents;
-	
-	@OneToOne
-	private AttachFile attachFile;
+	private String groupStatus = "I";
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Account updateUser;
@@ -54,26 +48,20 @@ public class Post {
 	@Column(updatable = false)
 	private Date reignedDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private AthleticGroup athleticGroup;
-	
-	public Post() {
+	public AthleticGroup() {
 		
 	}
 
-	public Post(Long postSn, String title, String postStatus, String contents, AttachFile attachFile,
-			Account updateUser, Date updateDate, Account registUser, Date reignedDate, AthleticGroup group) {
+	public AthleticGroup(Long groupSn, String groupName, String groupStatus, Account updateUser, Date updateDate,
+			Account registUser, Date reignedDate) {
 		super();
-		this.postSn = postSn;
-		this.title = title;
-		this.postStatus = postStatus;
-		this.contents = contents;
-		this.attachFile = attachFile;
+		this.groupSn = groupSn;
+		this.groupName = groupName;
+		this.groupStatus = groupStatus;
 		this.updateUser = updateUser;
 		this.updateDate = updateDate;
 		this.registUser = registUser;
 		this.reignedDate = reignedDate;
-		this.athleticGroup = group;
 	}
 	
 	

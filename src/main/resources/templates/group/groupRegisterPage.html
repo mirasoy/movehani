@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"> 
+   <head th:replace="fragments/header :: header" />
+   <script>
+		window.addEventListener('DOMContentLoaded', function(){
+			const inputImage = document.getElementById("attachFile")
+			inputImage.addEventListener("change", e => {
+				readImage(e.target)
+			})
+		});
+		
+		
+		function readImage(input) {
+				// 인풋 태그에 파일이 있는 경우
+				if (input.files && input.files[0]) {
+					// 이미지 파일인지 검사 (생략)
+					// FileReader 인스턴스 생성
+					const reader = new FileReader()
+					// 이미지가 로드가 된 경우
+					reader.onload = e => {
+						const previewImage = document.getElementById("preview-image")
+						previewImage.src = e.target.result
+					}
+					// reader가 이미지 읽도록 하기
+					reader.readAsDataURL(input.files[0])
+				}
+			}
+
+		
+   </script>
+    <body>
+     <h2 th:object="${post}"></h2> 
+     
+        <div class="container">
+         <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+            <div>
+                
+                <!-- Product section-->
+		        <section class="py-5">
+		        	<form name="postForm"  enctype="multipart/form-data" action="/post" method="post">
+		        		<input type="file" name="file" id="attachFile" style="display: none;" required>
+			            <div class="container px-4 px-lg-5 my-5">
+			                <div class="row gx-4 gx-lg-5 align-items-center">
+			                    <div class="col-md-6" ><img id="preview-image" style ="width: 20em;height: 20em;"></div>
+			                    <div class="col-md-6">
+			                        <div class="d-grid mb-3 gap-2 d-md-flex justify-content-md-end">
+			                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="document.getElementById('attachFile').click()">
+			                                <i class="bi bi-camera"></i>
+			                                사진등록
+			                            </button>
+			                        </div>
+			                        <div class="input-group mb-3">
+									  <span class="input-group-text" id="inputGroup-sizing-default">그룹명</span>
+									  <input type="text"  name="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+									</div>
+									
+									<span class="input-group-text" id="inputGroup-sizing-default">내용</span>
+									<div class="input-group mb-3">
+									  <input type="text" name="contents" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+									</div>
+			                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+			                                <i class="bi bi-pencil-square"></i>
+			                                등록
+			                            </button>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+		        	</form>
+		        </section>
+                
+                
+            </div>
+             <div th:replace="fragments/footer :: footer" />
+        </div> <!-- /container -->
+    </body>
+</html>
