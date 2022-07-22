@@ -22,11 +22,11 @@ public class GruopService {
 		groupRepository.deleteById((long) postSn);
 	}
 
-	public Optional<AthleticGroup> getPost(int postSn) {
+	public Optional<AthleticGroup> getAthleticGroup(int postSn) {
 		return groupRepository.findById((long) postSn);
 	}
 
-	public Page<AthleticGroup> getPostList(Pageable page) {
+	public Page<AthleticGroup> getAthleticGroupList(Pageable page) {
 		return groupRepository.findAll(page);
 	}
 

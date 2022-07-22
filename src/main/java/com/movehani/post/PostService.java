@@ -1,11 +1,14 @@
 package com.movehani.post;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import com.movehani.group.AthleticGroup;
 
 @Service
 public class PostService {
@@ -29,6 +32,12 @@ public class PostService {
 	public Page<Post> getPostList(Pageable page) {
 		return postRepository.findAll(page);
 	}
+
+	public List<Post> getPostByAthleticGroup(int groupSn) {
+
+		return postRepository.findByAthleticGroupGroupSn(groupSn);
+	}
+
 
 	
 

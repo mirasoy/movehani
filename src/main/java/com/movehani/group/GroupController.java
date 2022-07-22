@@ -36,6 +36,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.movehani.file.AttachFile;
 import com.movehani.file.FileService;
+import com.movehani.post.Post;
+import com.movehani.post.PostService;
 
 @Controller
 public class GroupController {
@@ -44,33 +46,29 @@ public class GroupController {
 	private GruopService groupService;
 	
 	@Autowired
-	private FileService fileService;
+	private PostService postService;
 	
 	
 	@GetMapping("/group/{groupSn}")
 	public ModelAndView getgroup(@PathVariable int groupSn) {
-		 ModelAndView mav = new ModelAndView();
-		Optional<AthleticGroup> savedgroup = groupService.getPost(groupSn);
+		ModelAndView mav = new ModelAndView();
+		Optional<AthleticGroup> savedgroup = groupService.getAthleticGroup(groupSn);
+
 		if(savedgroup.isPresent()) {
 			mav.addObject("group",savedgroup.get());
 		}else {
 			mav.addObject("group",new AthleticGroup());
 		}
 		
+		List<Post> postlist = postService.getPostByAthleticGroup(groupSn);
 		
 		mav.setViewName("group/group");
 		return mav;
 	}
 	
 	@PostMapping("/group")
-	public String updateProduct(@RequestParam("file") MultipartFile files, AthleticGroup group) {
+	public String updateProduct(AthleticGroup group) {
 			
-		if(files != null) {
-			
-			AttachFile saveFile = fileService.saveFile(files);
-			//group.setAttachFile(saveFile);
-		}
-		
 		AthleticGroup savedgroup = groupService.save(group);
 		
 		return  "redirect:/group/"+savedgroup.getGroupSn();
@@ -97,7 +95,7 @@ public class GroupController {
 		
 		mav.setViewName("group/grouplist");
 		
-		PagedModel<EntityModel<AthleticGroup>> groupList= assembler.toModel(groupService.getPostList(pageable));
+		PagedModel<EntityModel<AthleticGroup>> groupList= assembler.toModel(groupService.getAthleticGroupList(pageable));
 		PageMetadata metadata = groupList.getMetadata();
 		mav.addObject("groupList",groupList.getContent());
 		mav.addObject("metadata",metadata);
