@@ -61,6 +61,7 @@ public class GroupController {
 		}
 		
 		List<Post> postlist = postService.getPostByAthleticGroup(groupSn);
+		mav.addObject("postlist",postlist);
 		
 		mav.setViewName("group/group");
 		return mav;

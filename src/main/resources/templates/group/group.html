@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"> 
+   <head th:replace="fragments/header :: header" />
+   <script>
+
+		
+   </script>
+    <body>
+     <h2 th:object="${group}"></h2> 
+     
+        <div class="container">
+         <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+            <div>
+                
+                <!-- Product section-->
+		        <section class="py-5">
+					<h1 class="display-5 fw-bolder" th:text="${group.groupName}">10000</td></h1>
+					<div class="col-6"  th:each="post, i: ${postlist}">
+					<a th:href="@{/post/{postSn}(postSn=${post.postSn})}">
+						<div class="col-md-6" ><img id="preview-image" th:src="@{/postFile/{postSn}(postSn=${post.postSn})}" style ="width: 20em;height: 20em;"></div>
+						<h2 th:text="${post.title}"></h2>
+					</a>
+				</div>
+		        </section>
+                
+                
+            </div>
+             <div th:replace="fragments/footer :: footer" />
+        </div> <!-- /container -->
+    </body>
+</html>
