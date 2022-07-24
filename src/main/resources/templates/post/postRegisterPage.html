@@ -39,6 +39,7 @@
 		        <section class="py-5">
 		        	<form name="postForm"  enctype="multipart/form-data" action="/post" method="post">
 		        		<input type="file" name="file" id="attachFile" style="display: none;" required>
+		        		<input type="hidden" name="athleticGroup" id="athleticGroup" style="display: none;"  th:value="${groupSn}"/>
 			            <div class="container px-4 px-lg-5 my-5">
 			                <div class="row gx-4 gx-lg-5 align-items-center">
 			                    <div class="col-md-6" ><img id="preview-image" style ="width: 20em;height: 20em;"></div>

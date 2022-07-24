@@ -21,6 +21,12 @@
 						<h2 th:text="${post.title}"></h2>
 					</a>
 				</div>
+				<a th:href="@{/registPage/{groupSn}(groupSn=${group.groupSn})}">
+                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                    <i class="bi bi-pencil-square"></i>
+                    글쓰기
+                </button>
+                </a>
 		        </section>
                 
                 

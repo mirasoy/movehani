@@ -108,9 +108,11 @@ public class PostController {
 	}
 	
 	
-	@GetMapping("/registPage")
-	public ModelAndView registPage() {
+	@GetMapping("/registPage/{groupSn}")
+	public ModelAndView registPage(@PathVariable int groupSn) {
 		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("groupSn",groupSn);
 		mav.setViewName("post/postRegisterPage");
 		return mav;
 	}
