@@ -50,7 +50,7 @@ public class GroupController {
 	
 	
 	@GetMapping("/group/{groupSn}")
-	public ModelAndView getgroup(@PathVariable int groupSn) {
+	public ModelAndView getgroup(@PathVariable int groupSn, @PageableDefault(size = 10) Pageable pageable, PagedResourcesAssembler<Post> assembler) {
 		ModelAndView mav = new ModelAndView();
 		Optional<AthleticGroup> savedgroup = groupService.getAthleticGroup(groupSn);
 
@@ -60,7 +60,7 @@ public class GroupController {
 			mav.addObject("group",new AthleticGroup());
 		}
 		
-		List<Post> postlist = postService.getPostByAthleticGroup(groupSn);
+		PagedModel<EntityModel<Post>> postlist= assembler.toModel(postService.getPostByAthleticGroup(groupSn, pageable));
 		mav.addObject("postlist",postlist);
 		
 		mav.setViewName("group/group");
@@ -91,7 +91,7 @@ public class GroupController {
 	}
 	
 	@GetMapping("/grouplist")
-	public ModelAndView groupList(@PageableDefault(size = 10) Pageable pageable, PagedResourcesAssembler<AthleticGroup> assembler) {
+	public ModelAndView groupList(@PageableDefault(size = 8) Pageable pageable, PagedResourcesAssembler<AthleticGroup> assembler) {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName("group/grouplist");

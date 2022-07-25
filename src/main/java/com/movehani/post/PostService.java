@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 
 import com.movehani.group.AthleticGroup;
@@ -36,6 +39,10 @@ public class PostService {
 	public List<Post> getPostByAthleticGroup(int groupSn) {
 
 		return postRepository.findByAthleticGroupGroupSn(groupSn);
+	}
+
+	public Page<Post> getPostByAthleticGroup(int groupSn, Pageable assembler) {
+		return postRepository.getPostByAthleticGroupGroupSn((long)groupSn, assembler);
 	}
 
 
