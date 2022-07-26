@@ -20,7 +20,7 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-public class Account {
+public class Member {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long accountSn;
@@ -32,13 +32,13 @@ public class Account {
 	private String nickname;
 	
 	@ManyToOne
-	private Account updateUser;
+	private Member updateUser;
 	
 	@LastModifiedDate
 	private Date updateDate;
 	
 	@ManyToOne
-	private Account registUser;
+	private Member registUser;
 	
 	@CreatedDate
 	private Date reignedDate;

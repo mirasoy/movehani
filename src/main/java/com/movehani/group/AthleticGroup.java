@@ -16,7 +16,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.movehani.account.Account;
+import com.movehani.account.Member;
 import com.movehani.file.AttachFile;
 
 import lombok.Builder;
@@ -36,13 +36,13 @@ public class AthleticGroup {
 	private String groupStatus = "I";
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Account updateUser;
+	private Member updateUser;
 	
 	@LastModifiedDate
 	private Date updateDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Account registUser;
+	private Member registUser;
 	
 	@CreatedDate
 	@Column(updatable = false)
@@ -52,8 +52,8 @@ public class AthleticGroup {
 		
 	}
 
-	public AthleticGroup(Long groupSn, String groupName, String groupStatus, Account updateUser, Date updateDate,
-			Account registUser, Date reignedDate) {
+	public AthleticGroup(Long groupSn, String groupName, String groupStatus, Member updateUser, Date updateDate,
+			Member registUser, Date reignedDate) {
 		super();
 		this.groupSn = groupSn;
 		this.groupName = groupName;

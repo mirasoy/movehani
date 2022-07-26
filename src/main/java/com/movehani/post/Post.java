@@ -16,7 +16,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.movehani.account.Account;
+import com.movehani.account.Member;
 import com.movehani.file.AttachFile;
 import com.movehani.group.AthleticGroup;
 
@@ -42,13 +42,13 @@ public class Post {
 	private AttachFile attachFile;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Account updateUser;
+	private Member updateUser;
 	
 	@LastModifiedDate
 	private Date updateDate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Account registUser;
+	private Member registUser;
 	
 	@CreatedDate
 	@Column(updatable = false)
@@ -62,7 +62,7 @@ public class Post {
 	}
 
 	public Post(Long postSn, String title, String postStatus, String contents, AttachFile attachFile,
-			Account updateUser, Date updateDate, Account registUser, Date reignedDate, AthleticGroup group) {
+			Member updateUser, Date updateDate, Member registUser, Date reignedDate, AthleticGroup group) {
 		super();
 		this.postSn = postSn;
 		this.title = title;

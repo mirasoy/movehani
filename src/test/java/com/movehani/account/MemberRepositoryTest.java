@@ -11,17 +11,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class AccountRepositoryTest {
+public class MemberRepositoryTest {
 
 	@Autowired
-	AccountRepository accountRepository;
+	MemberRepository accountRepository;
 	
 	@Test
 	public void saveTest() {
 		
-		Account accout = new Account();
+		Member accout = new Member();
 		accout.setNickname("임시닉네임");
-		Account resultAccout =accountRepository.save(accout);
+		Member resultAccout =accountRepository.save(accout);
 		
 		assertThat(resultAccout.getNickname().equals("임시닉네임"));
 		accountRepository.findAll().forEach(System.out::println);		
