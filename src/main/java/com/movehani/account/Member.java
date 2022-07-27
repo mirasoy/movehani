@@ -31,14 +31,8 @@ public class Member {
 	
 	private String nickname;
 	
-	@ManyToOne
-	private Member updateUser;
-	
 	@LastModifiedDate
 	private Date updateDate;
-	
-	@ManyToOne
-	private Member registUser;
 	
 	@CreatedDate
 	private Date reignedDate;
