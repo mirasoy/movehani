@@ -20,6 +20,11 @@ public class MemberService {
 	public Member save(Member member) {
 		return memberRepository.save(member);
 	}
+
+
+	public Member find(Member member) {
+		return memberRepository.findById(member.getSn()).get()0;
+	}
 	
 	
 

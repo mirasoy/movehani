@@ -23,9 +23,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member")
-	public String updateProduct(Member member) {
+	public String joinMember(Member member) {
 			
-		Member savemember = memberService.save(member);
+		memberService.save(member);
+		
+		return  "redirect:/postlist";
+	}
+	
+	@PostMapping("/member/login")
+	public String login(Member member) {
+		
+		Member member = memberService.find(member);
 		
 		return  "redirect:/postlist";
 	}

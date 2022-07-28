@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Member {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long accountSn;
+	private Long sn;
 	
 	private String id;
 	
