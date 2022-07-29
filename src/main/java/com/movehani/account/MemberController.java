@@ -1,5 +1,8 @@
 package com.movehani.account;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,11 +34,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/login")
-	public String login(Member member) {
+	public Member login(Member member) {
+	
 		
-		Member member = memberService.find(member);
+		Member findMember =  memberService.find(member.getEmail());
 		
-		return  "redirect:/postlist";
+		if(findMember != null) {
+			if(findMember.getPassword().equals(member.getPassword())) {
+				return findMember;
+			}
+		}
+		return null;
+				
 	}
 	
 	@GetMapping("/member/login")

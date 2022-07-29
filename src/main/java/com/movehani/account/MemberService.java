@@ -22,8 +22,8 @@ public class MemberService {
 	}
 
 
-	public Member find(Member member) {
-		return memberRepository.findById(member.getSn()).get()0;
+	public Member find(String mail) {
+		return memberRepository.findByEmail();
 	}
 	
 	
