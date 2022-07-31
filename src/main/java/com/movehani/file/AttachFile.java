@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.movehani.account.Member;
+import com.movehani.member.Member;
 
 import lombok.Builder;
 import lombok.Data;

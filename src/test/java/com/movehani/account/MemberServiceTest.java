@@ -10,14 +10,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.movehani.member.Member;
 import com.movehani.member.MemberRepository;
+import com.movehani.member.MemberService;
 
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class MemberRepositoryTest {
+public class MemberServiceTest {
 
 	@Autowired
-	MemberRepository accountRepository;
+	private MemberService memberService;
 	
 	@Test
 	public void saveTest() {
@@ -26,12 +27,9 @@ public class MemberRepositoryTest {
 
 		accout.setEmail("test");
 		accout.setPassword("test1");
-		Member resultAccout =accountRepository.save(accout);
+		Member resultAccout =memberService.save(accout);
 		
 		
-		
-		assertThat(resultAccout.getNickname().equals("임시닉네임"));
-		accountRepository.findAll().forEach(System.out::println);		
 	}
 	
 	

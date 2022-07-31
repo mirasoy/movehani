@@ -16,9 +16,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.movehani.account.Member;
 import com.movehani.file.AttachFile;
 import com.movehani.group.AthleticGroup;
+import com.movehani.member.Member;
 
 import lombok.Builder;
 import lombok.Data;
