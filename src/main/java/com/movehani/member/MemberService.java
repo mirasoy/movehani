@@ -23,7 +23,7 @@ public class MemberService {
 
 
 	public Member find(String mail) {
-		return memberRepository.findByEmail();
+		return memberRepository.findByEmail(mail);
 	}
 	
 	
