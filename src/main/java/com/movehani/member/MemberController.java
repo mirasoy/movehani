@@ -34,17 +34,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/login")
-	public Member login(Member member) {
-	
-		
+	public ModelAndView login(Member member) {
+		ModelAndView mav = new ModelAndView();
 		Member findMember =  memberService.find(member.getEmail());
 		
 		if(findMember != null) {
 			if(findMember.getPassword().equals(member.getPassword())) {
-				return findMember;
+				mav.addObject("memeber", findMember);
 			}
 		}
-		return null;
+		
+		mav.setViewName("member/login");
+		return mav;
 				
 	}
 	
