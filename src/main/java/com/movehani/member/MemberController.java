@@ -40,7 +40,7 @@ public class MemberController {
 		
 		if(findMember != null) {
 			if(findMember.getPassword().equals(member.getPassword())) {
-				mav.addObject("memeber", findMember);
+				mav.addObject("member", findMember);
 			}
 		}
 		
