@@ -32,7 +32,7 @@
 		                    	</a>
 		                        <h1 class="display-5 fw-bolder" th:text="${post.title}">10000</td></h1>
 		                        <div class="fs-5 mb-5">
-		                            <span th:text="${post.reignedDate}">날짜</span>
+		                            <span th:text="${#temporals.format(post.reignedDate, 'yyyy-MM-dd')}"></span>
 		                        </div>
 		                        <p class="lead"  th:text="${post.contents}">내용물</p>
 		                        <div class="">
